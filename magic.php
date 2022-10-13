@@ -16,7 +16,7 @@ class TestClass
         return $this->foo[1];
     }
 }
-
+// sadnshdbs
 $class = new TestClass(["Hello", "World"], "World");
 // $h = new TestClass;
 echo $class;
