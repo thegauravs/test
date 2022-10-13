@@ -12,11 +12,11 @@
 
 
 
-// class class3 extends class1{
-// 	function fun1(){
-// 		echo "fun2";
-// 	}
-// }
+class class3 extends class1{
+	function fun1(){
+		echo "fun2";
+	}
+}
 
 
 // $obj = new class3();
