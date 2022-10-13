@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="./cropper.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+        <link href="./cropper.min.css" rel="stylesheet" />
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    </head>
+    <body>
+        <p>Image</p>
+        <!-- Full screen modal -->
+        <div class="modal fade show" id="exampleModalFullscreen" tabindex="-1" aria-labelledby="exampleModalFullscreenLabel" style="display: block;" aria-modal="true" role="dialog">
+            <div class="modal-dialog modal-fullscreen">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title h4" id="exampleModalFullscreenLabel">Full screen modal</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- <div id="container-modal-image" class="image"> -->
+                    <img class="modal-image img-responsive" src="./magenativelogo3-03.jpg" id="image" alt="Picture"/>
+                    <div id="data"></div>
+                    <!-- </div> -->
+                    <button id="button">Button</button>
+                    <div id="result"></div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        <script>
+            window.addEventListener('DOMContentLoaded', function () {
+              var image = document.querySelector('#image');
+              var data = document.querySelector('#data');
+              var button = document.getElementById('button');
+              var result = document.getElementById('result');
+              var minCroppedWidth = 100;
+              var minCroppedHeight = 100;
+              var maxCroppedWidth = 100;
+              var maxCroppedHeight = 100;
+              var cropper = new Cropper(image, {
+                viewMode: 1,
+                zoomable: true,
+                movable:true,
+                dragMode: 'move',
+                autoCrop: true,
+                aspectRatio: 1,
+                data: {
+                  width: (minCroppedWidth + maxCroppedWidth) / 2,
+                  height: (minCroppedHeight + maxCroppedHeight) / 2,
+                },
+        
+                crop: function (event) {
+                  var width = event.detail.width;
+                  var height = event.detail.height;
+        
+                  if (
+                    width < minCroppedWidth
+                    || height < minCroppedHeight
+                    || width > maxCroppedWidth
+                    || height > maxCroppedHeight
+                  ) {
+                    cropper.setData({
+                      width: Math.max(minCroppedWidth, Math.min(maxCroppedWidth, width)),
+                      height: Math.max(minCroppedHeight, Math.min(maxCroppedHeight, height)),
+                    });
+                  }
+        
+                  data.textContent = JSON.stringify(cropper.getData(true));
+                },
+              });
+        
+              button.onclick = function () {
+                result.innerHTML = '';
+                result.appendChild(cropper.getCroppedCanvas());
+              };
+            });
+        </script>
+    </body>
+</html>

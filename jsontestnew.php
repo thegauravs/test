@@ -1,0 +1,5 @@
+<?php
+
+$json = '{"orders":[{"customer":{"id":5807389704228,"email":"pdnew@gmail.com","accepts_marketing":false,"created_at":"2022-06-08T18:33:49+05:30","updated_at":"2022-08-24T16:03:56+05:30","first_name":"p","last_name":"d","orders_count":0,"state":"enabled","total_spent":"0.00","last_order_id":null,"note":"","verified_email":true,"multipass_identifier":null,"tax_exempt":false,"tags":"discount, wholesale","last_order_name":null,"currency":"USD","phone":null,"accepts_marketing_updated_at":"2022-06-08T18:33:49+05:30","marketing_opt_in_level":null,"sms_marketing_consent":null,"admin_graphql_api_id":"gid:\/\/shopify\/Customer\/5807389704228","default_address":{"id":7156573339684,"customer_id":5807389704228,"first_name":"New","last_name":"Test","company":null,"address1":"Knp","address2":"","city":"Kanpur","province":"Uttar Pradesh","country":"India","zip":"208011","phone":null,"name":"New Test","province_code":"UP","country_code":"IN","country_name":"India","default":true}}}]}';
+$arraynew = json_decode($json, true);
+var_dump($arraynew['orders'][0]['customer']['id']);die;
