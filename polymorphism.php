@@ -19,8 +19,8 @@ class class3 extends class1{
 }
 
 
-// $obj = new class3();
-// $obj->fun1();
+$obj = new class3();
+$obj->fun1();
 
 /*interface*/
 interface class1{
